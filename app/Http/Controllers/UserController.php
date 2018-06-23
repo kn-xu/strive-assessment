@@ -7,8 +7,8 @@ use Psy\Util\Json;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use App\User;
-use App\QuestionResponse;
+use App\Models\User;
+use App\Models\QuestionResponse;
 
 class UserController extends BaseController
 {
