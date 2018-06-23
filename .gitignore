@@ -1,0 +1,10 @@
+.env
+.DS_Store
+.idea/
+node_modules
+vendor
+tests
+public/css/*
+public/fonts/*
+public/js/*
+public/views/*

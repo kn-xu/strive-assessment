@@ -1,0 +1,52 @@
+<div class="container assessment-container">
+    <div class="well">
+        <div ng-if="ctrl.step === 0" class="text-center">
+            <h1>{{ ctrl.title }}</h1>
+            <p>
+                If you experience an Internet connection issue and need to restart your assessment, please save this link:<br>
+                <pre>{{ ctrl.user.returnLink }}</pre>
+            </p>
+            <hr>
+            <h2>ONCE YOU CLICK "BEGIN" YOU MUST COMPLETE ALL ASSESSMENTS.</h2>
+            <p>
+                Do not close your browser before completing all assessments in your event.
+                You cannot re-start an assessment.
+            </p>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-primary" ng-click="ctrl.startTest()">{{ ctrl.btnText }}</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-if="ctrl.testStarted">
+            <div class="col-lg-6">
+                Question <strong>{{ctrl.step}}</strong> out of 5
+            </div>
+            <div class="col-lg-6 text-right">
+                Time Remaining: <strong>{{ ctrl.timeLeftDisplay }}</strong>
+            </div>
+        </div>
+
+        <questions ng-if="ctrl.step === 1"
+                      user="ctrl.user"
+                      step='ctrl.step'>
+        </questions>
+        <questions ng-if="ctrl.step === 2"
+                      user="ctrl.user"
+                      step='ctrl.step'>
+        </questions>
+        <questions ng-if="ctrl.step === 3"
+                        user="ctrl.user"
+                        step='ctrl.step'>
+        </questions>
+        <questions ng-if="ctrl.step === 4"
+                       user="ctrl.user"
+                       step='ctrl.step'>
+        </questions>
+        <questions ng-if="ctrl.step === 5"
+                       user="ctrl.user"
+                       step='ctrl.step'>
+        </questions>
+    </div>
+</div>

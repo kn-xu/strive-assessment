@@ -1,0 +1,22 @@
+<div class="flex-center position-ref full-height">
+    <div class="content">
+        <div class="title m-b-md">
+            Strive Talent
+        </div>
+        <form>
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" ng-model="ctrl.user.firstName">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" ng-model="ctrl.user.lastName">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" ng-model="ctrl.user.email">
+            </div>
+            <button type="submit" ng-click='ctrl.submitUser()' class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h2>{{ ctrl.question }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <textarea class="form-control" ng-model="ctrl.user.question_response[ctrl.questionField]" rows="7"></textarea>
+    </div>
+</div>
+<div class="row btn-question">
+    <div class="col-lg-6">
+        <strong>This questionnaire will save your results automatically every 15 seconds.</strong>
+    </div>
+    <div class="col-lg-6 text-right">
+        <button class="btn btn-danger" ng-if="ctrl.step > 1" ng-click="ctrl.previousQuestion()">Back</button>
+        <button class="btn btn-success" ng-if='ctrl.step < 5' ng-click="ctrl.nextQuestion()">Next</button>
+        <button class="btn btn-primary" ng-if="ctrl.step === 5" ng-click="ctrl.submitResponses()">Submit</button>
+    </div>
+</div>
