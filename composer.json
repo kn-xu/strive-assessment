@@ -53,8 +53,6 @@
             "php artisan clear-compiled",
             "chmod -R 777 public/",
             "touch database/database.sqlite",
-            "npm install",
-            "npm run dev",
             "php artisan migrate"
         ]
     },
