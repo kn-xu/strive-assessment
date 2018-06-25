@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Psy\Util\Json;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
@@ -12,6 +11,10 @@ use App\Models\QuestionResponse;
 
 class UserController extends BaseController
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|JsonResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function retrieve(Request $request)
     {
         $user = User::where('event_id', $request->get('eventId'))->with('QuestionResponse')->first();
@@ -26,6 +29,11 @@ class UserController extends BaseController
         return response()->json($response);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws \Exception
+     */
     public function validate(Request $request)
     {
         $params = $request->get('params');
@@ -62,6 +70,10 @@ class UserController extends BaseController
         return response()->json($response);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function saveResponse(Request $request)
     {
         $params = $request->get('params');
@@ -71,16 +83,16 @@ class UserController extends BaseController
 
         $responses = QuestionResponse::where('user_id', $user->id)->first();
         $paramResponses = $params['question_response'];
-        $responses->question_one_response = $paramResponses['question_one_response'];
-        $responses->question_two_response = $paramResponses['question_two_response'];
-        $responses->question_three_response = $paramResponses['question_three_response'];
-        $responses->question_four_response = $paramResponses['question_four_response'];
-        $responses->question_five_response = $paramResponses['question_five_response'];
-        $responses->save();
+
+        $this->saveUserResponses($responses, $paramResponses);
 
         return response()->json('success', JsonResponse::HTTP_OK);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function complete(Request $request)
     {
         $params = $request->get('params');
@@ -91,13 +103,30 @@ class UserController extends BaseController
 
         $responses = QuestionResponse::where('user_id', $user->id)->first();
         $paramResponses = $params['question_response'];
-        $responses->question_one_response = $paramResponses['question_one_response'];
-        $responses->question_two_response = $paramResponses['question_two_response'];
-        $responses->question_three_response = $paramResponses['question_three_response'];
-        $responses->question_four_response = $paramResponses['question_four_response'];
-        $responses->question_five_response = $paramResponses['question_five_response'];
-        $responses->save();
+
+        $this->saveUserResponses($responses, $paramResponses);
 
         return response()->json('success', JsonResponse::HTTP_OK);
+    }
+
+    /**
+     * PRIVATE FUNCTIONS
+     */
+
+    /**
+     * @param $responseObject
+     * @param $userInput
+     * @return mixed
+     */
+    private function saveUserResponses($responseObject, $userInput)
+    {
+        $responseObject->question_one_response = $userInput['question_one_response'];
+        $responseObject->question_two_response = $userInput['question_two_response'];
+        $responseObject->question_three_response = $userInput['question_three_response'];
+        $responseObject->question_four_response = $userInput['question_four_response'];
+        $responseObject->question_five_response = $userInput['question_five_response'];
+        $responseObject->save();
+
+        return $responseObject;
     }
 }
