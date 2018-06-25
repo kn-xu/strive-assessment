@@ -60,13 +60,13 @@ Almost all written code was in UserController.php
 
 There are currently 4 endpoints,
  
-1). Get user information
+1). Get User + Questionnaire
 
 2). Validate User
 
-3). Save User
+3). Save User + Questionnaire
 
-4). Complete User Questionnaire 
+4). Complete User + Questionnaire 
 
 ## Front End
 All custom JS code is found under resources/assets/js
